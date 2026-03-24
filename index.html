@@ -79,6 +79,12 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
+
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.5) 0%, 
+                transparent 20%, 
+                transparent 80%, 
+                rgba(0,0,0,0.5) 100%);
         }
 
         .content-box {
@@ -90,7 +96,14 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.5s;
+            opacity: 0; /* Awalnya tidak kelihatan */
+            transform: translateY(50px); /* Awalnya agak ke bawah */
+            transition: all 0.8s ease-out; /* Durasi animasi 0.8 detik */
+        }
+
+        .content-box.visible {
+            opacity: 1; /* Jadi kelihatan */
+            transform: translateY(0); /* Naik ke posisi asli */
         }
 
         h2 {
