@@ -2,23 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" 
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemanasan Global</title>
-</head>
-<body style="
-    min-height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, aqua 0%, #00bfff 25%, lightgreen 50%, greenyellow 75%, #ffd700 100%); 
-    font-family: Helvetica;
-">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica', sans-serif;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-<h1>Infografis</h1>
-<h2>Apa itu Pemanasan Global?</h2>
-<p>
-    Pemanasan global (global warming) adalah peningkatan suhu rata-rata atmosfer, 
-    lautan, dan daratan Bumi yang terjadi dalam jangka panjang
-</p>
-<img src="pemanasanglobal.jpg" width="300">
+        /* Membuat background gambar yang blur */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Ganti 'background-image.jpg' dengan nama file gambarmu */
+            background-image: url('pemanasanglobal.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.7); /* Efek blur dan sedikit gelap */
+            z-index: -1; /* Supaya berada di belakang konten */
+            transform: scale(1.1); /* Mencegah garis putih di pinggiran akibat blur */
+        }
+
+        /* Kontainer konten agar terlihat profesional */
+        .content-card {
+            background: rgba(255, 255, 255, 0.85); /* Putih transparan */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 800px;
+            backdrop-filter: blur(5px); /* Efek kaca (glassmorphism) */
+            text-align: center;
+        }
+
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        h2 { color: #16a085; }
+        p { line-height: 1.6; font-size: 1.1em; }
+        
+        .main-img {
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-card">
+        <h1>Infografis</h1>
+        <h2>Apa itu Pemanasan Global?</h2>
+        <hr style="border: 0; height: 1px; background: #ddd; margin: 20px 0;">
+        <p>
+            Pemanasan global (global warming) adalah peningkatan suhu rata-rata atmosfer, 
+            lautan, dan daratan Bumi yang terjadi dalam jangka panjang.
+        </p>
+        <img src="pemanasanglobal.jpg" class="main-img" width="400" alt="Ilustrasi Pemanasan Global">
+    </div>
+
 </body>
 </html>
