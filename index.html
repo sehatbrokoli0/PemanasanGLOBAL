@@ -16,6 +16,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             color: white;
             background-color: #0a0a0a;
+            overflow-x: hidden;
         }
 
         /* Background Blur */
@@ -55,7 +56,7 @@
 
         .nav-menu {
             display: flex;
-            gap: 30px; /* Jarak antar menu sedikit dirapatkan agar muat 4 menu */
+            gap: 30px;
         }
 
         .nav-link {
@@ -66,11 +67,14 @@
             font-size: 0.85em;
             letter-spacing: 1px;
             transition: 0.3s;
+            opacity: 0.6;
         }
 
-        .nav-link:hover {
+        /* Hover & Class Active (Glow) */
+        .nav-link:hover, .nav-link.active {
             color: white;
-            text-shadow: 0 0 10px #adff2f;
+            text-shadow: 0 0 10px #adff2f, 0 0 20px #adff2f;
+            opacity: 1;
         }
 
         /* SECTION STYLING */
@@ -80,7 +84,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Konten di tengah */
+            align-items: center;
             text-align: center;
         }
 
@@ -89,8 +93,14 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 20px;
-            border-top: 4px solid #adff2f; /* Variasi border di atas */
+            border-top: 4px solid #adff2f;
             backdrop-filter: blur(5px);
+            transition: 0.4s;
+        }
+
+        .content-box:hover {
+            box-shadow: 0 0 30px rgba(173, 255, 47, 0.2);
+            transform: translateY(-5px);
         }
 
         h2 {
@@ -116,6 +126,67 @@
             margin-top: 20px;
         }
 
+        /* FOOTER KOTAK TUGAS */
+        .simple-footer {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .footer-box {
+            max-width: 600px;
+            padding: 30px;
+            border: 1px solid rgba(173, 255, 47, 0.2);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        .footer-box p {
+            font-style: italic;
+            font-size: 1.1em;
+            margin: 0;
+            color: #eee;
+        }
+
+        .footer-line {
+            width: 50px;
+            height: 2px;
+            background: #adff2f;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Tombol Kembali ke Atas */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #adff2f;
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5em;
+            box-shadow: 0 0 15px rgba(173, 255, 47, 0.4);
+            transition: 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* Variasi Warna Section */
         #penyebab h2 { color: #00ffcc; }
         #penyebab .content-box { border-top-color: #00ffcc; }
@@ -123,7 +194,7 @@
         #dampak .content-box { border-top-color: #ff4500; }
         #infografis h2 { color: #ffd700; }
         #infografis .content-box { border-top-color: #ffd700; }
-
+        
     </style>
 </head>
 <body>
@@ -169,6 +240,47 @@
             <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.6;">Visualisasi data dampak lingkungan jangka panjang.</p>
         </div>
     </section>
+
+    <footer class="simple-footer">
+        <div class="footer-box">
+            <p>"Bumi menyediakan cukup untuk memenuhi kebutuhan setiap orang, tetapi tidak cukup untuk keserakahan setiap orang."</p>
+            <div class="footer-line"></div>
+            <p style="font-size: 0.85em; opacity: 0.7; font-style: normal;">
+                Tugas Sekolah &bull; 2026 &bull; [Nama Kamu / Kelas]
+            </p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="btnBack">↑</a>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const btnBack = document.getElementById("btnBack");
+
+        window.onscroll = () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+
+            if (window.scrollY > 300) {
+                btnBack.classList.add("show");
+            } else {
+                btnBack.classList.remove("show");
+            }
+        };
+    </script>
 
 </body>
 </html>
