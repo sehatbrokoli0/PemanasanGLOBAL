@@ -70,40 +70,42 @@
             position: relative;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Membuat efek paralaks */
+            background-attachment: fixed; /* Efek Paralaks */
         }
 
-        /* Overlay Gelap per Section agar teks terbaca */
+        /* Overlay Gradasi agar transisi antar section halus */
         section::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
-
             background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.5) 0%, 
+                rgba(0,0,0,0.7) 0%, 
                 transparent 20%, 
                 transparent 80%, 
-                rgba(0,0,0,0.5) 100%);
+                rgba(0,0,0,0.7) 100%);
         }
 
         .content-box {
             position: relative;
             z-index: 2;
             max-width: 600px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            opacity: 0; /* Awalnya tidak kelihatan */
-            transform: translateY(50px); /* Awalnya agak ke bawah */
-            transition: all 0.8s ease-out; /* Durasi animasi 0.8 detik */
+            
+            /* Efek Fade-In Awal */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
         }
 
+        /* Muncul saat JavaScript menambahkan kelas .visible */
         .content-box.visible {
-            opacity: 1; /* Jadi kelihatan */
-            transform: translateY(0); /* Naik ke posisi asli */
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
@@ -121,40 +123,32 @@
 
         /* --- PENGATURAN TIAP BAB --- */
 
-        /* 1. PENGERTIAN (Kiri - Biru Navy) */
         #pengertian {
-            background-image: url('bg-laut.jpg'); /* Ganti dengan gambar laut/es */
-            justify-content: flex-start; /* Konten di kiri */
+            background-image: url('bg-laut.jpg'); 
+            justify-content: flex-start; /* Kiri */
         }
-        #pengertian::before { background: rgba(0, 10, 30, 0.8); } /* Navy Overlay */
         #pengertian h2 { color: #00d4ff; }
         #pengertian .content-box { border-left: 5px solid #00d4ff; }
 
-        /* 2. PENYEBAB (Kanan - Abu-abu/Polusi) */
         #penyebab {
-            background-image: url('bg-asap.jpg'); /* Ganti dengan gambar polusi/asap */
-            justify-content: flex-end; /* Konten di kanan */
+            background-image: url('bg-asap.jpg'); 
+            justify-content: flex-end; /* Kanan */
         }
-        #penyebab::before { background: rgba(20, 20, 20, 0.85); } /* Dark Gray Overlay */
         #penyebab h2 { color: #00ffcc; }
         #penyebab .content-box { border-right: 5px solid #00ffcc; }
 
-        /* 3. DAMPAK (Kiri - Merah/Kekeringan) */
         #dampak {
-            background-image: url('bg-kering.jpeg'); /* Ganti dengan gambar tanah kering */
-            justify-content: flex-start;
+            background-image: url('bg-kering.jpeg'); 
+            justify-content: flex-start; /* Kiri */
         }
-        #dampak::before { background: rgba(40, 10, 0, 0.85); } /* Red-ish Overlay */
         #dampak h2 { color: #ff4500; }
         #dampak .content-box { border-left: 5px solid #ff4500; }
 
-        /* 4. INFOGRAFIS (Tengah - Hijau/Alam) */
         #infografis {
-            background-image: url('bg-hutan.jpg'); /* Ganti dengan gambar hutan/bumi */
-            justify-content: center;
+            background-image: url('bg-hutan.jpg'); 
+            justify-content: center; /* Tengah */
             text-align: center;
         }
-        #infografis::before { background: rgba(5, 20, 5, 0.85); } /* Green Overlay */
         #infografis h2 { color: #adff2f; }
         #infografis .content-box { max-width: 900px; border-bottom: 5px solid #adff2f; }
 
@@ -260,15 +254,29 @@
     <a href="#" class="back-to-top" id="btnBack">↑</a>
 
     <script>
-        const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".nav-link");
         const btnBack = document.getElementById("btnBack");
+        const boxes = document.querySelectorAll(".content-box");
+
+        // Fungsi supaya kotak muncul saat di-scroll
+        function checkBoxes() {
+            const triggerBottom = window.innerHeight * 0.8; 
+
+            boxes.forEach(box => {
+                const boxTop = box.getBoundingClientRect().top;
+                if (boxTop < triggerBottom) {
+                    box.classList.add("visible");
+                }
+            });
+        }
 
         window.onscroll = () => {
+            checkBoxes(); // Jalankan animasi muncul
+
             let current = "";
-            sections.forEach((section) => {
+            document.querySelectorAll("section").forEach((section) => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
+                if (pageYOffset >= sectionTop - 250) {
                     current = section.getAttribute("id");
                 }
             });
@@ -283,6 +291,9 @@
             if (window.scrollY > 400) { btnBack.classList.add("show"); }
             else { btnBack.classList.remove("show"); }
         };
+
+        // Panggil sekali saat start agar box pertama muncul
+        checkBoxes();
     </script>
 
 </body>
