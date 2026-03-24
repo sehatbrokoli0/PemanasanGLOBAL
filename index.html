@@ -19,44 +19,30 @@
             overflow-x: hidden;
         }
 
-        /* Background Blur */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('pemanasanglobal.jpg'); 
-            background-size: cover;
-            background-position: center;
-            filter: blur(12px) brightness(0.3); 
-            z-index: -1;
-            transform: scale(1.1);
-        }
-
         /* DASHBOARD / NAVIGASI */
         .dashboard {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            padding: 15px 60px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .brand h1 {
             margin: 0;
-            font-size: 1.5em;
-            letter-spacing: 1px;
+            font-size: 1.3em;
+            letter-spacing: 2px;
             color: #adff2f;
         }
 
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-link {
@@ -64,108 +50,133 @@
             color: #adff2f;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.85em;
-            letter-spacing: 1px;
+            font-size: 0.8em;
             transition: 0.3s;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        /* Hover & Class Active (Glow) */
         .nav-link:hover, .nav-link.active {
             color: white;
-            text-shadow: 0 0 10px #adff2f, 0 0 20px #adff2f;
+            text-shadow: 0 0 10px #adff2f;
             opacity: 1;
         }
 
-        /* SECTION STYLING */
+        /* SECTION GLOBAL STYLING */
         section {
             min-height: 100vh;
-            padding: 120px 60px 60px 60px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            padding: 100px 10% 60px 10%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Membuat efek paralaks */
+        }
+
+        /* Overlay Gelap per Section agar teks terbaca */
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
         }
 
         .content-box {
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             border-radius: 20px;
-            border-top: 4px solid #adff2f;
-            backdrop-filter: blur(5px);
-            transition: 0.4s;
-        }
-
-        .content-box:hover {
-            box-shadow: 0 0 30px rgba(173, 255, 47, 0.2);
-            transform: translateY(-5px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.5s;
         }
 
         h2 {
-            font-size: 3em;
+            font-size: 2.8em;
             margin-top: 0;
-            color: #adff2f;
             text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
         p {
-            font-size: 1.2em;
+            font-size: 1.1em;
             line-height: 1.8;
             opacity: 0.9;
         }
 
-        /* KHUSUS SECTION INFOGRAFIS */
+        /* --- PENGATURAN TIAP BAB --- */
+
+        /* 1. PENGERTIAN (Kiri - Biru Navy) */
+        #pengertian {
+            background-image: url('bg-laut.jpg'); /* Ganti dengan gambar laut/es */
+            justify-content: flex-start; /* Konten di kiri */
+        }
+        #pengertian::before { background: rgba(0, 10, 30, 0.8); } /* Navy Overlay */
+        #pengertian h2 { color: #00d4ff; }
+        #pengertian .content-box { border-left: 5px solid #00d4ff; }
+
+        /* 2. PENYEBAB (Kanan - Abu-abu/Polusi) */
+        #penyebab {
+            background-image: url('bg-asap.jpg'); /* Ganti dengan gambar polusi/asap */
+            justify-content: flex-end; /* Konten di kanan */
+        }
+        #penyebab::before { background: rgba(20, 20, 20, 0.85); } /* Dark Gray Overlay */
+        #penyebab h2 { color: #00ffcc; }
+        #penyebab .content-box { border-right: 5px solid #00ffcc; }
+
+        /* 3. DAMPAK (Kiri - Merah/Kekeringan) */
+        #dampak {
+            background-image: url('bg-kering.jpeg'); /* Ganti dengan gambar tanah kering */
+            justify-content: flex-start;
+        }
+        #dampak::before { background: rgba(40, 10, 0, 0.85); } /* Red-ish Overlay */
+        #dampak h2 { color: #ff4500; }
+        #dampak .content-box { border-left: 5px solid #ff4500; }
+
+        /* 4. INFOGRAFIS (Tengah - Hijau/Alam) */
+        #infografis {
+            background-image: url('bg-hutan.jpg'); /* Ganti dengan gambar hutan/bumi */
+            justify-content: center;
+            text-align: center;
+        }
+        #infografis::before { background: rgba(5, 20, 5, 0.85); } /* Green Overlay */
+        #infografis h2 { color: #adff2f; }
+        #infografis .content-box { max-width: 900px; border-bottom: 5px solid #adff2f; }
+
         .infografis-img {
             max-width: 100%;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
             margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* FOOTER KOTAK TUGAS */
+        /* FOOTER */
         .simple-footer {
-            padding: 80px 20px;
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 60px 20px;
+            background: #000;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-box {
             max-width: 600px;
-            padding: 30px;
+            margin: 0 auto;
+            padding: 20px;
             border: 1px solid rgba(173, 255, 47, 0.2);
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(5px);
-            text-align: center;
         }
 
-        .footer-box p {
-            font-style: italic;
-            font-size: 1.1em;
-            margin: 0;
-            color: #eee;
-        }
-
-        .footer-line {
-            width: 50px;
-            height: 2px;
-            background: #adff2f;
-            margin: 20px auto;
-            border-radius: 2px;
-        }
-
-        /* Tombol Kembali ke Atas */
+        /* BACK TO TOP */
         .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: #adff2f;
             color: black;
             border-radius: 50%;
@@ -174,36 +185,18 @@
             align-items: center;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.5em;
-            box-shadow: 0 0 15px rgba(173, 255, 47, 0.4);
-            transition: 0.3s;
-            z-index: 1000;
+            z-index: 2000;
             opacity: 0;
-            pointer-events: none;
+            transition: 0.3s;
         }
+        .back-to-top.show { opacity: 1; }
 
-        .back-to-top.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Variasi Warna Section */
-        #penyebab h2 { color: #00ffcc; }
-        #penyebab .content-box { border-top-color: #00ffcc; }
-        #dampak h2 { color: #ff4500; }
-        #dampak .content-box { border-top-color: #ff4500; }
-        #infografis h2 { color: #ffd700; }
-        #infografis .content-box { border-top-color: #ffd700; }
-        
     </style>
 </head>
 <body>
 
     <header class="dashboard">
-        <div class="brand">
-            <h1>PEMANASAN GLOBAL</h1>
-        </div>
-
+        <div class="brand"><h1>PEMANASAN GLOBAL</h1></div>
         <nav class="nav-menu">
             <a href="#pengertian" class="nav-link">Pengertian</a>
             <a href="#penyebab" class="nav-link">Penyebab</a>
@@ -215,38 +208,38 @@
     <section id="pengertian">
         <div class="content-box">
             <h2>Pengertian</h2>
-            <p>Pemanasan global adalah fenomena peningkatan suhu rata-rata atmosfer, laut, dan daratan Bumi secara menyeluruh akibat gas rumah kaca.</p>
+            <p>Pemanasan global adalah fenomena peningkatan suhu rata-rata atmosfer, laut, dan daratan Bumi secara menyeluruh akibat gas rumah kaca yang memerangkap panas matahari.</p>
         </div>
     </section>
 
     <section id="penyebab">
         <div class="content-box">
             <h2>Penyebab</h2>
-            <p>Aktivitas industri, pembakaran bahan bakar fosil, dan penggundulan hutan adalah faktor utama rusaknya lapisan atmosfer kita.</p>
+            <p>Asap industri, pembakaran hutan secara liar, dan penggunaan bahan bakar fosil yang berlebihan melepaskan karbon dioksida tinggi yang merusak ozon kita.</p>
         </div>
     </section>
 
     <section id="dampak">
         <div class="content-box">
             <h2>Dampak</h2>
-            <p>Kenaikan permukaan laut dan cuaca ekstrem yang tidak menentu mengancam keberlangsungan hidup seluruh makhluk di Bumi.</p>
+            <p>Gunung es mencair, permukaan laut naik yang mengancam pulau-pulau kecil, hingga perubahan iklim ekstrem yang merusak ekosistem pertanian.</p>
         </div>
     </section>
 
     <section id="infografis">
         <div class="content-box">
             <h2>Infografis</h2>
-            <img src="pemanasanglobal.jpg" class="infografis-img" alt="Visual Infografis Pemanasan Global">
-            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.6;">Visualisasi data dampak lingkungan jangka panjang.</p>
+            <img src="pemanasanglobal.jpg" class="infografis-img" alt="Visual Infografis">
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.6;">Visualisasi data statistik perubahan suhu global tahun 2026.</p>
         </div>
     </section>
 
     <footer class="simple-footer">
         <div class="footer-box">
-            <p>"Bumi menyediakan cukup untuk memenuhi kebutuhan setiap orang, tetapi tidak cukup untuk keserakahan setiap orang."</p>
-            <div class="footer-line"></div>
-            <p style="font-size: 0.85em; opacity: 0.7; font-style: normal;">
-                Tugas Sekolah &bull; 2026 &bull; [Nama Kamu / Kelas]
+            <p style="font-style: italic;">"Bumi menyediakan cukup untuk memenuhi kebutuhan setiap orang, tetapi tidak cukup untuk keserakahan setiap orang."</p>
+            <div style="width: 40px; height: 2px; background: #adff2f; margin: 15px auto;"></div>
+            <p style="font-size: 0.8em; opacity: 0.7;">
+                Tugas Sekolah &bull; 2026 &bull; [Kelompok 8 / 11 TIK B]
             </p>
         </div>
     </footer>
@@ -262,7 +255,7 @@
             let current = "";
             sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
+                if (pageYOffset >= sectionTop - 200) {
                     current = section.getAttribute("id");
                 }
             });
@@ -274,11 +267,8 @@
                 }
             });
 
-            if (window.scrollY > 300) {
-                btnBack.classList.add("show");
-            } else {
-                btnBack.classList.remove("show");
-            }
+            if (window.scrollY > 400) { btnBack.classList.add("show"); }
+            else { btnBack.classList.remove("show"); }
         };
     </script>
 
