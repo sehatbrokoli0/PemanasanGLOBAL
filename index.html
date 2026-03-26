@@ -61,22 +61,19 @@
             opacity: 1;
         }
 
-        /* SECTION GLOBAL STYLING - MODIFIED FOR DYNAMIC HEIGHT */
+        /* SECTION GLOBAL STYLING */
         section {
-            min-height: 100vh; /* Minimal satu layar penuh */
+            min-height: 100vh; 
             display: flex;
             align-items: center;
-            padding: 120px 10% 80px 10%; /* Padding disesuaikan */
+            padding: 120px 10% 80px 10%; 
             position: relative;
-            
-            /* Background Fix agar tidak pecah saat konten melar */
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Tetap pakai paralaks tapi background-size tetap cover */
+            background-attachment: fixed; 
         }
 
-        /* Dark Overlay untuk menyamarkan gambar pecah & fokus ke teks */
         section::before {
             content: "";
             position: absolute;
@@ -91,13 +88,12 @@
         .content-box {
             position: relative;
             z-index: 2;
-            max-width: 650px; /* Sedikit dilebarin biar muat teks panjang */
+            max-width: 700px;
             background: rgba(0, 0, 0, 0.75);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease-out;
@@ -109,16 +105,27 @@
         }
 
         h2 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             margin-top: 0;
             text-transform: uppercase;
             margin-bottom: 20px;
         }
 
-        p {
-            font-size: 1.1em;
-            line-height: 1.8;
+        p, li {
+            font-size: 1.05em;
+            line-height: 1.7;
             opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #adff2f;
+            font-weight: bold;
         }
 
         /* --- BACKGROUND TIAP BAB --- */
@@ -133,6 +140,11 @@
         #dampak { background-image: url('bg-kering.jpeg'); justify-content: flex-start; }
         #dampak h2 { color: #ff4500; }
         #dampak .content-box { border-left: 5px solid #ff4500; }
+
+        /* Section Solusi Baru */
+        #solusi { background-image: url('bg-solusi.jpg'); justify-content: flex-end; }
+        #solusi h2 { color: #adff2f; }
+        #solusi .content-box { border-right: 5px solid #adff2f; }
 
         #infografis { background-image: url('bg-hutan.jpg'); justify-content: center; text-align: center; }
         #infografis h2 { color: #adff2f; }
@@ -195,6 +207,7 @@
             <a href="#pengertian" class="nav-link">Pengertian</a>
             <a href="#penyebab" class="nav-link">Penyebab</a>
             <a href="#dampak" class="nav-link">Dampak</a>
+            <a href="#solusi" class="nav-link">Solusi</a>
             <a href="#infografis" class="nav-link">Infografis</a>
         </nav>
     </header>
@@ -202,29 +215,53 @@
     <section id="pengertian">
         <div class="content-box">
             <h2>Pengertian</h2>
-            <p>Pemanasan global adalah fenomena peningkatan suhu rata-rata atmosfer, laut, dan daratan Bumi secara menyeluruh. Hal ini terjadi akibat akumulasi gas rumah kaca yang memerangkap energi panas matahari di atmosfer kita, menyebabkan perubahan suhu ekstrem yang kini tercatat mencapai titik tertinggi baru pada kuartal pertama tahun 2026.</p>
+            <p>Pemanasan global (<span class="highlight">global warming</span>) adalah peningkatan suhu rata-rata atmosfer, lautan, dan daratan Bumi secara bertahap dalam jangka panjang. Fenomena ini dipicu oleh akumulasi gas rumah kaca yang memerangkap panas di dalam atmosfer.</p>
+            <p>Berdasarkan data terbaru <span class="highlight">Maret 2026</span>, suhu rata-rata global telah merangkak naik melebihi tingkat pra-industri, memicu anomali cuaca yang kian nyata di berbagai belahan dunia.</p>
         </div>
     </section>
 
     <section id="penyebab">
         <div class="content-box">
-            <h2>Penyebab</h2>
-            <p>Aktivitas antropogenik menjadi pemicu utama, mulai dari emisi gas buang industri, deforestasi skala besar, hingga ketergantungan pada bahan bakar fosil. Pelepasan karbon dioksida (CO₂) dan metana (CH₄) menciptakan lapisan isolator yang membuat suhu global terus merangkak naik melebihi ambang batas normal.</p>
+            <h2>Penyebab Utama</h2>
+            <ul>
+                <li><span class="highlight">Emisi Gas Rumah Kaca:</span> Pembakaran fosil yang masif melepaskan CO₂ dan metana ke atmosfer.</li>
+                <li><span class="highlight">Deforestasi:</span> Hilangnya hutan hujan primer mengurangi kemampuan Bumi menyerap karbon alami.</li>
+                <li><span class="highlight">Aktivitas Industri:</span> Polutan kimia dari pabrik mempertebal lapisan gas yang memerangkap panas matahari.</li>
+                <li><span class="highlight">Limbah Organik:</span> Pembusukan sampah di TPA melepaskan gas metana yang sangat merusak sistem iklim.</li>
+            </ul>
         </div>
     </section>
 
     <section id="dampak">
         <div class="content-box">
-            <h2>Dampak</h2>
-            <p>Konsekuensi nyata mulai terlihat dari mencairnya lapisan es di kutub secara masif, kenaikan permukaan air laut yang mengancam kota pesisir, hingga ketidakteraturan pola cuaca. Di wilayah tropis, gelombang panas ekstrem kini lebih sering terjadi, berdampak langsung pada gagal panen dan krisis air bersih.</p>
+            <h2>Dampak Nyata</h2>
+            <p>Konsekuensi dari krisis iklim ini sudah kita rasakan secara langsung:</p>
+            <ul>
+                <li><span class="highlight">Suhu Ekstrem:</span> Di Surabaya, suhu yang menyengat mulai mengganggu konsentrasi belajar dan meningkatkan beban energi.</li>
+                <li><span class="highlight">Kenaikan Laut:</span> Mencairnya es kutub mengancam wilayah pesisir dengan banjir rob yang lebih sering.</li>
+                <li><span class="highlight">Kesehatan:</span> Gelombang panas meningkatkan risiko penyakit dan menurunkan kualitas udara secara global.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="solusi">
+        <div class="content-box">
+            <h2>Solusi & Langkah Nyata</h2>
+            <p>Bukan sekadar teori, berikut adalah langkah krusial untuk menahan laju pemanasan global:</p>
+            <ul>
+                <li><span class="highlight">Efisiensi Energi:</span> Menghemat pemakaian AC dan listrik di sekolah maupun rumah.</li>
+                <li><span class="highlight">Transportasi Hijau:</span> Mulai beralih ke transportasi umum atau kendaraan rendah emisi.</li>
+                <li><span class="highlight">Reforestasi:</span> Mendukung aksi penanaman pohon untuk mengembalikan paru-paru dunia.</li>
+                <li><span class="highlight">Kebijakan Global:</span> Mendorong implementasi penuh <i>Paris Agreement</i> untuk menjaga suhu Bumi tetap stabil.</li>
+            </ul>
         </div>
     </section>
 
     <section id="infografis">
         <div class="content-box">
-            <h2>Status Global 2026</h2>
+            <h2>Analisis Data 2026</h2>
             <img src="pemanasanglobal.jpg" class="infografis-img" alt="Visual Infografis">
-            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.8;">Visualisasi Peta Persentil Suhu Global: Februari 2026 tercatat sebagai salah satu bulan terpanas sepanjang sejarah pengamatan NOAA.</p>
+            <p style="font-size: 0.9em; margin-top: 20px;">Visualisasi menunjukkan status kritis suhu Bumi per Februari 2026. Data ini menjadi alarm bahwa aksi nyata harus dilakukan <span class="highlight">sekarang</span>, bukan nanti.</p>
         </div>
     </section>
 
@@ -233,7 +270,7 @@
             <p style="font-style: italic;">"Bumi menyediakan cukup untuk memenuhi kebutuhan setiap orang, tetapi tidak cukup untuk keserakahan setiap orang."</p>
             <div style="width: 40px; height: 2px; background: #adff2f; margin: 15px auto;"></div>
             <p style="font-size: 0.8em; opacity: 0.7;">
-                Tugas Sekolah &bull; Maret 2026 &bull; [Kelompok 8 / 11 TIK B]
+                Makalah TIK &bull; Maret 2026 &bull; Kelompok 8 (11 TIK B)
             </p>
         </div>
     </footer>
