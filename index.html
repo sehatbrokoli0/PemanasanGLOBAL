@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Warming Dashboard</title>
+    <title>Pemanasan Global 2026</title>
     <style>
         /* Smooth Scroll */
         html {
@@ -61,48 +61,48 @@
             opacity: 1;
         }
 
-        /* SECTION GLOBAL STYLING */
+        /* SECTION GLOBAL STYLING - MODIFIED FOR DYNAMIC HEIGHT */
         section {
-            min-height: 100vh;
+            min-height: 100vh; /* Minimal satu layar penuh */
             display: flex;
             align-items: center;
-            padding: 100px 10% 60px 10%;
+            padding: 120px 10% 80px 10%; /* Padding disesuaikan */
             position: relative;
+            
+            /* Background Fix agar tidak pecah saat konten melar */
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efek Paralaks */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Tetap pakai paralaks tapi background-size tetap cover */
         }
 
-        /* Overlay Gradasi agar transisi antar section halus */
+        /* Dark Overlay untuk menyamarkan gambar pecah & fokus ke teks */
         section::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
             background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.7) 0%, 
-                transparent 20%, 
-                transparent 80%, 
-                rgba(0,0,0,0.7) 100%);
+                rgba(0,0,0,0.8) 0%, 
+                rgba(0,0,0,0.4) 50%, 
+                rgba(0,0,0,0.8) 100%);
         }
 
         .content-box {
             position: relative;
             z-index: 2;
-            max-width: 600px;
-            background: rgba(0, 0, 0, 0.7);
+            max-width: 650px; /* Sedikit dilebarin biar muat teks panjang */
+            background: rgba(0, 0, 0, 0.75);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
             
-            /* Efek Fade-In Awal */
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease-out;
         }
 
-        /* Muncul saat JavaScript menambahkan kelas .visible */
         .content-box.visible {
             opacity: 1;
             transform: translateY(0);
@@ -121,34 +121,20 @@
             opacity: 0.9;
         }
 
-        /* --- PENGATURAN TIAP BAB --- */
-
-        #pengertian {
-            background-image: url('bg-laut.jpg'); 
-            justify-content: flex-start; /* Kiri */
-        }
+        /* --- BACKGROUND TIAP BAB --- */
+        #pengertian { background-image: url('bg-laut.jpg'); justify-content: flex-start; }
         #pengertian h2 { color: #00d4ff; }
         #pengertian .content-box { border-left: 5px solid #00d4ff; }
 
-        #penyebab {
-            background-image: url('bg-asap.jpg'); 
-            justify-content: flex-end; /* Kanan */
-        }
+        #penyebab { background-image: url('bg-asap.jpg'); justify-content: flex-end; }
         #penyebab h2 { color: #00ffcc; }
         #penyebab .content-box { border-right: 5px solid #00ffcc; }
 
-        #dampak {
-            background-image: url('bg-kering.jpeg'); 
-            justify-content: flex-start; /* Kiri */
-        }
+        #dampak { background-image: url('bg-kering.jpeg'); justify-content: flex-start; }
         #dampak h2 { color: #ff4500; }
         #dampak .content-box { border-left: 5px solid #ff4500; }
 
-        #infografis {
-            background-image: url('bg-hutan.jpg'); 
-            justify-content: center; /* Tengah */
-            text-align: center;
-        }
+        #infografis { background-image: url('bg-hutan.jpg'); justify-content: center; text-align: center; }
         #infografis h2 { color: #adff2f; }
         #infografis .content-box { max-width: 900px; border-bottom: 5px solid #adff2f; }
 
@@ -158,6 +144,7 @@
             border-radius: 10px;
             margin-top: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(173, 255, 47, 0.3);
         }
 
         /* FOOTER */
@@ -215,29 +202,29 @@
     <section id="pengertian">
         <div class="content-box">
             <h2>Pengertian</h2>
-            <p>Pemanasan global adalah fenomena peningkatan suhu rata-rata atmosfer, laut, dan daratan Bumi secara menyeluruh akibat gas rumah kaca yang memerangkap panas matahari.</p>
+            <p>Pemanasan global adalah fenomena peningkatan suhu rata-rata atmosfer, laut, dan daratan Bumi secara menyeluruh. Hal ini terjadi akibat akumulasi gas rumah kaca yang memerangkap energi panas matahari di atmosfer kita, menyebabkan perubahan suhu ekstrem yang kini tercatat mencapai titik tertinggi baru pada kuartal pertama tahun 2026.</p>
         </div>
     </section>
 
     <section id="penyebab">
         <div class="content-box">
             <h2>Penyebab</h2>
-            <p>Asap industri, pembakaran hutan secara liar, dan penggunaan bahan bakar fosil yang berlebihan melepaskan karbon dioksida tinggi yang merusak ozon kita.</p>
+            <p>Aktivitas antropogenik menjadi pemicu utama, mulai dari emisi gas buang industri, deforestasi skala besar, hingga ketergantungan pada bahan bakar fosil. Pelepasan karbon dioksida (CO₂) dan metana (CH₄) menciptakan lapisan isolator yang membuat suhu global terus merangkak naik melebihi ambang batas normal.</p>
         </div>
     </section>
 
     <section id="dampak">
         <div class="content-box">
             <h2>Dampak</h2>
-            <p>Gunung es mencair, permukaan laut naik yang mengancam pulau-pulau kecil, hingga perubahan iklim ekstrem yang merusak ekosistem pertanian.</p>
+            <p>Konsekuensi nyata mulai terlihat dari mencairnya lapisan es di kutub secara masif, kenaikan permukaan air laut yang mengancam kota pesisir, hingga ketidakteraturan pola cuaca. Di wilayah tropis, gelombang panas ekstrem kini lebih sering terjadi, berdampak langsung pada gagal panen dan krisis air bersih.</p>
         </div>
     </section>
 
     <section id="infografis">
         <div class="content-box">
-            <h2>Infografis</h2>
+            <h2>Status Global 2026</h2>
             <img src="pemanasanglobal.jpg" class="infografis-img" alt="Visual Infografis">
-            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.6;">Visualisasi data statistik perubahan suhu global tahun 2026.</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.8;">Visualisasi Peta Persentil Suhu Global: Februari 2026 tercatat sebagai salah satu bulan terpanas sepanjang sejarah pengamatan NOAA.</p>
         </div>
     </section>
 
@@ -246,7 +233,7 @@
             <p style="font-style: italic;">"Bumi menyediakan cukup untuk memenuhi kebutuhan setiap orang, tetapi tidak cukup untuk keserakahan setiap orang."</p>
             <div style="width: 40px; height: 2px; background: #adff2f; margin: 15px auto;"></div>
             <p style="font-size: 0.8em; opacity: 0.7;">
-                Tugas Sekolah &bull; 2026 &bull; [Kelompok 8 / 11 TIK B]
+                Tugas Sekolah &bull; Maret 2026 &bull; [Kelompok 8 / 11 TIK B]
             </p>
         </div>
     </footer>
@@ -258,10 +245,8 @@
         const btnBack = document.getElementById("btnBack");
         const boxes = document.querySelectorAll(".content-box");
 
-        // Fungsi supaya kotak muncul saat di-scroll
         function checkBoxes() {
-            const triggerBottom = window.innerHeight * 0.8; 
-
+            const triggerBottom = window.innerHeight * 0.85; 
             boxes.forEach(box => {
                 const boxTop = box.getBoundingClientRect().top;
                 if (boxTop < triggerBottom) {
@@ -271,12 +256,11 @@
         }
 
         window.onscroll = () => {
-            checkBoxes(); // Jalankan animasi muncul
-
+            checkBoxes();
             let current = "";
             document.querySelectorAll("section").forEach((section) => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 250) {
+                if (pageYOffset >= sectionTop - 300) {
                     current = section.getAttribute("id");
                 }
             });
@@ -292,9 +276,7 @@
             else { btnBack.classList.remove("show"); }
         };
 
-        // Panggil sekali saat start agar box pertama muncul
         checkBoxes();
     </script>
-
 </body>
 </html>
