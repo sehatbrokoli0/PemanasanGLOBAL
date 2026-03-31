@@ -61,9 +61,7 @@
             opacity: 1;
         }
 
-        /* =========================================
-           SECTION GLOBAL STYLING (PLAN D - TERANG & HALUS)
-           ========================================= */
+        /* SECTION GLOBAL STYLING */
         section {
             min-height: 100vh; 
             display: flex;
@@ -76,7 +74,6 @@
             overflow: hidden; 
         }
 
-        /* Pseudo-element ::after untuk efek Blur yang lebih tipis */
         section::after {
             content: "";
             position: absolute;
@@ -85,12 +82,10 @@
             background-image: inherit; 
             background-size: cover;
             background-position: center;
-            /* BLUR DIKURANGI BIAR GAK BRUTAL, BRIGHTNESS DINAIKKAN */
             filter: blur(8px) brightness(0.85) contrast(1.1); 
-            transform: scale(1.1); /* Mencegah garis putih di pinggir */
+            transform: scale(1.1);
         }
 
-        /* Pseudo-element ::before untuk Overlay Gradasi yang lebih transparan */
         section::before {
             content: "";
             position: absolute;
@@ -102,14 +97,14 @@
                     rgba(0,0,0,0.2) 50%, 
                     rgba(0,0,0,0.8) 100%),
                 url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.3; /* Tekstur dibikin makin samar */
+            opacity: 0.3;
         }
 
         .content-box {
             position: relative;
             z-index: 3; 
             max-width: 700px;
-            background: rgba(0, 0, 0, 0.65); /* Box lebih transparan biar lega */
+            background: rgba(0, 0, 0, 0.65);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(15px);
@@ -138,11 +133,6 @@
             margin-bottom: 15px;
         }
 
-        ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-
         .highlight {
             color: #adff2f;
             font-weight: bold;
@@ -153,9 +143,10 @@
         #pengertian h2 { color: #00d4ff; }
         #pengertian .content-box { border-left: 5px solid #00d4ff; }
 
-        #penyebab { background-image: url('bg-asap.jpg'); justify-content: flex-end; }
+        #penyebab { background-image: url('bg-asap.jpg'); justify-content: center; }
         #penyebab h2 { color: #00ffcc; }
-        #penyebab .content-box { border-right: 5px solid #00ffcc; }
+        /* Box khusus penyebab dilebarkan agar muat grafik di samping teks */
+        #penyebab .content-box { border-right: 5px solid #00ffcc; max-width: 1000px; }
 
         #dampak { background-image: url('bg-kering.jpeg'); justify-content: flex-start; }
         #dampak h2 { color: #ff4500; }
@@ -178,6 +169,25 @@
             border: 1px solid rgba(173, 255, 47, 0.3);
         }
 
+        /* DATA VISUAL CONTAINER */
+        .data-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .data-text { flex: 1; min-width: 300px; }
+        .data-charts { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 20px; }
+        .chart-item {
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .chart-item img { width: 100%; border-radius: 5px; }
+        .chart-label { font-size: 0.8em; margin-bottom: 8px; text-align: center; color: #adff2f; }
+        .chart-source { font-size: 0.7em; opacity: 0.5; text-align: center; margin-top: 5px; }
+
         /* FOOTER */
         .simple-footer {
             padding: 60px 20px;
@@ -186,7 +196,6 @@
             position: relative;
             z-index: 2;
         }
-
         .footer-box {
             max-width: 600px;
             margin: 0 auto;
@@ -242,12 +251,29 @@
     <section id="penyebab">
         <div class="content-box">
             <h2>Penyebab Utama</h2>
-            <ul>
-                <li><span class="highlight">Emisi Gas Rumah Kaca:</span> Pembakaran fosil yang masif melepaskan CO₂ dan metana ke atmosfer.</li>
-                <li><span class="highlight">Deforestasi:</span> Hilangnya hutan hujan primer mengurangi kemampuan Bumi menyerap karbon alami.</li>
-                <li><span class="highlight">Aktivitas Industri:</span> Polutan kimia dari pabrik mempertebal lapisan gas yang memerangkap panas matahari.</li>
-                <li><span class="highlight">Limbah Organik:</span> Pembusukan sampah di TPA melepaskan gas metana yang sangat merusak sistem iklim.</li>
-            </ul>
+            <div class="data-container">
+                <div class="data-text">
+                    <ul style="padding-left: 20px;">
+                        <li><span class="highlight">Emisi Gas Rumah Kaca:</span> Pembakaran fosil yang masif melepaskan CO₂ dan metana ke atmosfer.</li>
+                        <li><span class="highlight">Deforestasi:</span> Hilangnya hutan hujan primer mengurangi kemampuan Bumi menyerap karbon alami.</li>
+                        <li><span class="highlight">Aktivitas Industri:</span> Polutan kimia dari pabrik mempertebal lapisan gas yang memerangkap panas matahari.</li>
+                        <li><span class="highlight">Limbah Organik:</span> Pembusukan sampah di TPA melepaskan gas metana yang sangat merusak sistem iklim.</li>
+                    </ul>
+                </div>
+                
+                <div class="data-charts">
+                    <div class="chart-item">
+                        <div class="chart-label">Tren Emisi Gas Rumah Kaca (2020-2024)</div>
+                        <img src="image_308c5f.png" alt="Grafik Emisi">
+                        <div class="chart-source">Sumber: Joint Research Centre - European Commission</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="chart-label">Kehilangan Hutan Primer Tropis (2021-2022)</div>
+                        <img src="image_308c97.png" alt="Grafik Deforestasi">
+                        <div class="chart-source">Sumber: Global Forest Watch</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -255,7 +281,7 @@
         <div class="content-box">
             <h2>Dampak Nyata</h2>
             <p>Konsekuensi dari krisis iklim ini sudah kita rasakan secara langsung:</p>
-            <ul>
+            <ul style="padding-left: 20px;">
                 <li><span class="highlight">Suhu Ekstrem:</span> Di Surabaya, suhu yang menyengat mulai mengganggu konsentrasi belajar dan meningkatkan beban energi.</li>
                 <li><span class="highlight">Kenaikan Laut:</span> Mencairnya es kutub mengancam wilayah pesisir dengan banjir rob yang lebih sering.</li>
                 <li><span class="highlight">Kesehatan:</span> Gelombang panas meningkatkan risiko penyakit dan menurunkan kualitas udara secara global.</li>
@@ -267,7 +293,7 @@
         <div class="content-box">
             <h2>Solusi & Langkah Nyata</h2>
             <p>Bukan sekadar teori, berikut adalah langkah krusial untuk menahan laju pemanasan global:</p>
-            <ul>
+            <ul style="padding-left: 20px;">
                 <li><span class="highlight">Efisiensi Energi:</span> Menghemat pemakaian AC dan listrik di sekolah maupun rumah.</li>
                 <li><span class="highlight">Transportasi Hijau:</span> Mulai beralih ke transportasi umum atau kendaraan rendah emisi.</li>
                 <li><span class="highlight">Reforestasi:</span> Mendukung aksi penanaman pohon untuk mengembalikan paru-paru dunia.</li>
